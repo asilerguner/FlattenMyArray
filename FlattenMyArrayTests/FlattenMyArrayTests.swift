@@ -22,10 +22,17 @@ class FlattenMyArrayTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let flattenedIntegerArray: [Any] = [1, [2, 3, 4, 5, 6, 7], 8].flattenedArray
+        XCTAssertEqual([1, 2, 3, 4, 5, 6, 7, 8], flattenedIntegerArray as! [Int])
+        
+        let flattenedStringArray: [Any] = ["login",["recover",["password","username"]],[[[[["secret"]]]]]].flattenedArray
+        XCTAssertEqual(["login", "recover", "password", "username", "secret"], flattenedStringArray as! [String])
+        
+        let flattenedAnyArray = [0,["recover",["password","username"]],[[[[[1]]]]]].flattenedArray
+        let flattenedAnytoStringArray = String(describing: flattenedAnyArray)
+        XCTAssertEqual(String(describing: [0, "recover", "password", "username", 1]), flattenedAnytoStringArray)
     }
-    
+      
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
